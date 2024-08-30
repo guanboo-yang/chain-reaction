@@ -130,7 +130,7 @@ function GamePage() {
   return (
     <div
       className={cn(
-        "relative text-4xl w-full flex flex-col items-center duration-300 transition-colors justify-center h-screen",
+        "relative flex h-screen w-full flex-col items-center justify-center text-4xl transition-colors duration-300",
         current === Color.None && "bg-neutral-300",
         current === Color.Blue && "bg-sky-300",
         current === Color.Red && "bg-red-300"
@@ -162,21 +162,21 @@ function GamePage() {
       </div>
       <div
         className={cn(
-          "absolute inset-0 transition-colors duration-500 flex flex-col gap-4 items-center justify-center",
-          isOver ? "opacity-100 bg-black/80" : "opacity-0 pointer-events-none"
+          "absolute inset-0 flex flex-col items-center justify-center gap-4 transition-colors duration-500",
+          isOver ? "bg-black/80 opacity-100" : "pointer-events-none opacity-0"
         )}
       >
         {current === Color.Blue && <p className="text-sky-500">Blue Wins!</p>}
         {current === Color.Red && <p className="text-red-500">Red Wins!</p>}
         <button
           onClick={handleRestart}
-          className="bg-white py-2 px-4 rounded-xl hover:bg-neutral-100 transition-colors active:bg-neutral-200"
+          className="rounded-xl bg-white px-4 py-2 transition-colors hover:bg-neutral-100 active:bg-neutral-200"
         >
           Restart
         </button>
       </div>
       {/* add up all value */}
-      <span className="text-2xl py-6">
+      <span className="py-6 text-2xl">
         {board.reduce((acc, cur) => acc + cur.value, 0)}
         {/* {iter === -1 ? 0 : iter} */}
       </span>

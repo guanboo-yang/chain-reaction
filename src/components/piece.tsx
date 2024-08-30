@@ -27,8 +27,8 @@ export default function Piece(props: PieceProps) {
   return (
     <div
       className={cn(
-        "relative size-4/5 rounded-full transition-[all] scale-100 duration-500",
-        props.color === Color.None && "opacity-0 scale-75",
+        "relative size-4/5 scale-100 rounded-full transition-[all] duration-500",
+        props.color === Color.None && "scale-75 opacity-0",
         props.color === Color.Red && "bg-red-500",
         props.color === Color.Blue && "bg-sky-500"
       )}
@@ -38,12 +38,12 @@ export default function Piece(props: PieceProps) {
       {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}
-          className="inset-0 absolute w-full h-full transition-[rotate] duration-500"
+          className="absolute inset-0 h-full w-full transition-[rotate] duration-500"
           style={{ rotate: `${getRotate(props.value, index)}deg` }}
         >
           <div
             className={cn(
-              "absolute bg-white size-5 transition-[top] duration-500 rounded-full inset-1/2 -translate-x-1/2 -translate-y-1/2",
+              "absolute inset-1/2 size-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white transition-[top] duration-500",
               props.value <= 1 && "top-1/2",
               props.value === 2 && "top-[25%]",
               props.value === 3 && "top-[76%]",

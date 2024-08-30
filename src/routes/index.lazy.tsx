@@ -6,11 +6,11 @@ export const Route = createLazyFileRoute("/")({
 
 function HomePage() {
   return (
-    <div className="relative text-4xl w-full flex flex-col items-center duration-300 transition-colors justify-center h-screen bg-neutral-300">
+    <div className="relative flex h-screen w-full flex-col items-center justify-center bg-neutral-300 text-4xl transition-colors duration-300">
       <h1 className="mb-4">Chain Reaction</h1>
       <Link
         to="/game"
-        className="bg-white py-2 px-4 rounded-xl hover:bg-neutral-100 transition-colors active:bg-neutral-200"
+        className="rounded-xl bg-white px-4 py-2 transition-colors hover:bg-neutral-100 active:bg-neutral-200"
       >
         Start
       </Link>

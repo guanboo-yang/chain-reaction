@@ -17,7 +17,7 @@ export default function Cell(props: PropsWithChildren<CellProps>) {
     <button
       onClick={props.onClick}
       className={cn(
-        "bg-neutral-50/80 transition-[filter,background] rounded-xl size-24 flex shadow-md items-center justify-center",
+        "flex size-24 items-center justify-center rounded-xl bg-neutral-50/80 shadow-md transition-[filter,background]",
         props.current === Color.Red && "bg-red-200",
         props.current === Color.Blue && "bg-sky-200",
         props.color === Color.Red && "bg-red-200",
