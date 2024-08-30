@@ -1,6 +1,3 @@
 # Chain Reaction
 
-<video autoplay muted>
-  <source src="assets/chain-reaction.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/0554b4e0-e376-48d4-83e6-8c1fd0b8da33
