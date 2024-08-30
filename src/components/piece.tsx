@@ -43,7 +43,7 @@ export default function Piece(props: PieceProps) {
         >
           <div
             className={cn(
-              "absolute inset-1/2 size-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white transition-[top] duration-500",
+              "absolute inset-1/2 size-1/4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white transition-[top] duration-500",
               props.value <= 1 && "top-1/2",
               props.value === 2 && "top-[25%]",
               props.value === 3 && "top-[76%]",

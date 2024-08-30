@@ -140,9 +140,12 @@ function GamePage() {
         current === Color.Red && "bg-red-300"
       )}
     >
+      <span className="mx-4 text-pretty py-2 text-center text-2xl">
+        Chain Reaction - Normal Mode
+      </span>
       <div
         className={cn(
-          "grid grid-cols-5 grid-rows-5 gap-2",
+          "grid w-[560px] max-w-full grid-cols-5 grid-rows-5 p-2",
           (status === "pending" || iter === -1) && "pointer-events-none"
         )}
       >
@@ -176,9 +179,8 @@ function GamePage() {
         </button>
       </div>
       {/* add up all value */}
-      <span className="py-6 text-2xl">
+      <span className="mx-4 py-2 text-2xl">
         {board.reduce((acc, cur) => acc + cur.value, 0)}
-        {/* {iter === -1 ? 0 : iter} */}
       </span>
     </div>
   );

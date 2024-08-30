@@ -18,8 +18,6 @@ const router = createRouter({
   history: hashHistory,
 });
 
-console.log(router.basepath);
-
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
   interface Register {
