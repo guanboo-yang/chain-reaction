@@ -1,5 +1,5 @@
-import { cn } from "./cn";
-import { Color } from "./color";
+import { cn } from "../lib/cn";
+import { Color } from "../lib/color";
 
 interface PieceProps {
   value: number;

@@ -1,7 +1,13 @@
-import { PropsWithChildren, useEffect, useRef, useState } from "react";
-import Piece from "./piece";
-import { Color } from "./color";
-import { cn } from "./cn";
+import { createLazyFileRoute } from "@tanstack/react-router";
+import { useRef, useState, useEffect } from "react";
+import { cn } from "../lib/cn";
+import { Color } from "../lib/color";
+import Piece from "../components/piece";
+import Cell from "../components/cell";
+
+export const Route = createLazyFileRoute("/game")({
+  component: GamePage,
+});
 
 type Cell = {
   value: number;
@@ -24,7 +30,7 @@ function critical(width: number, height: number, index: number) {
   ].filter(Boolean).length;
 }
 
-export default function App() {
+function GamePage() {
   const intervalRef = useRef<number | null>(null);
   const [iter, setIter] = useState(-1);
   const [pending, setPending] = useState(false);
@@ -61,6 +67,7 @@ export default function App() {
     if (iter === -1) return;
     if (iter >= 2 && (blue === 0 || red === 0)) setIsOver(true);
     if (board.every((cell, index) => cell.value < critical(5, 5, index))) {
+      const isOver = iter >= 2 && (blue === 0 || red === 0);
       setPending(false);
       if (!isOver) setIter((prev) => prev + 1);
       return;
@@ -101,7 +108,7 @@ export default function App() {
 
   useEffect(() => {
     if (isOver) return;
-    setTimeout(() => setIter(0), 500);
+    setIter(0);
   }, [isOver]);
 
   // useEffect(() => {
@@ -129,11 +136,11 @@ export default function App() {
         current === Color.Red && "bg-red-300"
       )}
     >
-      <div className="relative z-10 flex items-center justify-center gap-2 my-4 px-4 py-2 rounded-xl bg-white">
+      {/* <div className="relative z-10 flex items-center justify-center gap-2 my-4 px-4 py-2 rounded-xl bg-white">
         <span className="text-2xl text-sky-500">{blue}</span>
         <span className="text-2xl text-black">·</span>
         <span className="text-2xl text-red-500">{red}</span>
-      </div>
+      </div> */}
       <div
         className={cn(
           "grid grid-cols-5 grid-rows-5 gap-2",
@@ -163,7 +170,7 @@ export default function App() {
         {current === Color.Red && <p className="text-red-500">Red Wins!</p>}
         <button
           onClick={handleRestart}
-          className="bg-white py-2 px-4 rounded-xl hover:bg-neutral-200"
+          className="bg-white py-2 px-4 rounded-xl hover:bg-neutral-100 transition-colors active:bg-neutral-200"
         >
           Restart
         </button>
@@ -174,33 +181,5 @@ export default function App() {
         {/* {iter === -1 ? 0 : iter} */}
       </span>
     </div>
-  );
-}
-
-interface CellProps {
-  color: Color;
-  isOver: boolean;
-  current: Color;
-  onClick: () => void;
-}
-
-function Cell(props: PropsWithChildren<CellProps>) {
-  const isValid =
-    !props.isOver &&
-    (props.color === Color.None || props.color === props.current);
-  return (
-    <button
-      onClick={props.onClick}
-      className={cn(
-        "bg-neutral-50/80 transition-[filter,background] rounded-xl size-24 flex shadow-md items-center justify-center",
-        props.current === Color.Red && "bg-red-200",
-        props.current === Color.Blue && "bg-sky-200",
-        props.color === Color.Red && "bg-red-200",
-        props.color === Color.Blue && "bg-sky-200",
-        isValid ? "hover:brightness-105" : "brightness-90"
-      )}
-    >
-      {props.children}
-    </button>
   );
 }
